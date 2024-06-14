@@ -1,0 +1,53 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class AWTCounter extends Frame implements ActionListener {
+
+  private Label label;
+  private TextField countField;
+  private Button clickButton;
+  private int clickCount;
+
+  public AWTCounter() {
+    super("AWT Counter");
+
+    // Initialize components
+    label = new Label("Count: ");
+    countField = new TextField(5);
+    countField.setEditable(false); // Set text field non-editable
+    clickButton = new Button("Click Me");
+
+    // Set layout
+    setLayout(new FlowLayout());
+
+    // Add components to frame
+    add(label);
+    add(countField);
+    add(clickButton);
+
+    // Add action listener to button
+    clickButton.addActionListener(this);
+
+    // Set initial count
+    clickCount = 0;
+    updateCountDisplay();
+
+    // Set frame properties
+    setSize(300, 100);
+    setVisible(true);
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    clickCount++;
+    updateCountDisplay();
+  }
+
+  private void updateCountDisplay() {
+    countField.setText(String.valueOf(clickCount));
+  }
+
+  public static void main(String[] args) {
+    new AWTCounter();
+  }
+}
